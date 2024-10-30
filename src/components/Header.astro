@@ -1,0 +1,40 @@
+---
+// コンポーネント
+import HeaderItem from "./HeaderItem";
+import HambugerMenu from "./HambugerMenu";
+import ThemeMenu from "./ThemeMenu";
+// ナビゲーション項目
+import { navItems } from "../utils";
+
+type Props = {
+  activeMenu: string;
+};
+
+const { activeMenu } = Astro.props;
+---
+
+<header class="fixed w-full top-0 h-16 border-b bg-stone-50 dark:bg-gray-800">
+  <div class="flex justify-between items-center w-4/5 h-full mx-auto">
+    <HambugerMenu activeMenu={activeMenu} client:load />
+
+    <span class="font-bold text-xl w-auto dark:text-slate-50">
+      <a href="/">Yuri's Blog</a>
+    </span>
+
+    <nav class="w-auto flex items-center justify-end">
+      <ul class="hidden sm:flex">
+        {
+          navItems.map(navItem => (
+            <HeaderItem
+              navTitle={navItem.navTitle}
+              navLink={navItem.navLink}
+              activeMenu={activeMenu}
+            />
+          ))
+        }
+      </ul>
+
+      <ThemeMenu client:load />
+    </nav>
+  </div>
+</header>
