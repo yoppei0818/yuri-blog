@@ -11,7 +11,7 @@ const HeaderItem: React.FC<Props> = ({ navTitle, navLink, activeMenu }) => {
       <li className="hidden mr-4 ml-4 sm:block">
         <a
           href={navLink}
-          className={`inline-block  hover:text-black duration-200 ease-in-out ${navTitle === activeMenu ? "text-black dark:text-slate-50" : "text-gray-400"}`}
+          className={`inline-block  hover:text-black dark:hover:text-slate-50 duration-200 ease-in-out ${navTitle === activeMenu ? "text-black dark:text-slate-50" : "text-gray-400"}`}
         >
           {navTitle}
         </a>
@@ -20,7 +20,7 @@ const HeaderItem: React.FC<Props> = ({ navTitle, navLink, activeMenu }) => {
       <li className="pt-4 pb-4 text-center sm:hidden">
         <a
           href={navLink}
-          className={`inline-block  hover:text-black duration-200 ease-in-out ${navTitle === activeMenu ? "text-black dark:text-slate-50" : "text-gray-400"}`}
+          className={`inline-block  hover:text-black dark:hover:text-slate-50 duration-200 ease-in-out ${navTitle === activeMenu ? "text-black dark:text-slate-50" : "text-gray-400"}`}
         >
           {navTitle}
         </a>
