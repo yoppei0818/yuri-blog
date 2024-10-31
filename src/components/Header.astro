@@ -13,7 +13,9 @@ type Props = {
 const { activeMenu } = Astro.props;
 ---
 
-<header class="fixed w-full top-0 h-16 border-b bg-stone-50 dark:bg-gray-800">
+<header
+  class="fixed w-full top-0 h-16 border-b shadow-md bg-stone-50 dark:bg-gray-800"
+>
   <div class="flex justify-between items-center w-4/5 h-full mx-auto">
     <HambugerMenu activeMenu={activeMenu} client:load />
 
