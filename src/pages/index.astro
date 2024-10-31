@@ -1,9 +1,49 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+import { Image } from "astro:assets";
+import profileImage from "../images/profileImage.png";
+import githubLogoImage from "../images/githubLogoImage.svg";
+import xLogoImage from "../images/xLogoImage.svg";
 ---
 
 <Layout title="Yuri's Blog" activeMenu="Home">
-  <main class="mt-16">
-    <h1 class="text-teal-400">Hello, World</h1>
+  <main
+    class="mt-16 pt-5 w-4/5 mx-auto flex flex-col items-center sm:flex-row sm:justify-center"
+  >
+    <Image src={profileImage} alt="プロフィール画像" width="200" height="200" />
+    <div class="mt-5">
+      <h1 class="mb-2 text-2xl font-extrabold dark:text-slate-50 sm:text-3xl">
+        Hello, I'm Yuri.
+      </h1>
+      <p class="text-sm dark:text-slate-50 sm:text-base">
+        Tech系の記事やゆるい雑談などを週に1回投稿する予定です。<br
+        />フロントエンド関連の記事が中心になります。
+      </p>
+      <div class="mt-2 flex flex-col gap-2 sm:flex-row">
+        <a
+          href="https://github.com/yoppei0818"
+          class="w-fit inline-flex items-center text-sm font-semibold border px-5 py-2 rounded-lg dark:text-slate-50"
+          ><Image
+            class="mr-1 dark:invert"
+            src={githubLogoImage}
+            alt="Githubアカウント画像"
+            width="16"
+            height="16"
+          />@yoppei0818</a
+        >
+        <a
+          href="https://github.com/yoppei0818"
+          class="w-fit inline-flex items-center text-sm font-semibold border px-5 py-2 rounded-lg dark:text-slate-50"
+          ><Image
+            class="mr-1 dark:invert"
+            src={xLogoImage}
+            alt="Xアカウント画像"
+            width="16"
+            height="16"
+          />@beginnerfe_0818</a
+        >
+      </div>
+    </div>
   </main>
 </Layout>
