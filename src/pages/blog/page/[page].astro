@@ -1,0 +1,65 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import EyecatchCard from "../../../components/EyecatchCard.astro";
+
+//動的ルーティング生成
+import type { GetStaticPathsOptions } from "astro";
+import { getBlogs } from "../../../lib/microcms";
+import { blogListItems } from "../../../utils";
+
+export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
+  const response = await getBlogs({
+    fields: blogListItems,
+  });
+  return paginate(response.contents, { pageSize: 9 });
+};
+
+const { page } = Astro.props;
+---
+
+<Layout title="Yuri's Blog | Blog" activeMenu="Blog">
+  <main class="mt-20 pt-5 w-4/5 mx-auto">
+    <h2 class="mb-2 text-xl font-bold dark:text-slate-50 sm:text-2xl">
+      記事一覧
+    </h2>
+    <div class="mt-5 grid grid-flow-row gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        page.data.length > 0 ? (
+          page.data.map((content: any) => <EyecatchCard {...content} />)
+        ) : (
+          <h3>
+            表示できる記事がありませんでした &#x1F647;&#x200D;&#x2642;&#xFE0F;
+          </h3>
+        )
+      }
+    </div>
+
+    <nav class="mt-10">
+      <div class="flex items-center justify-center">
+        {
+          page.url.prev && (
+            <a
+              href={page.url.prev}
+              class="w-fit text-sm font-semibold px-5 py-2 rounded-lg bg-zinc-800 text-slate-50  dark:border dark:border-zinc-700"
+            >
+              Back
+            </a>
+          )
+        }
+        <p class="mx-8 w-fit text-base font-semibold dark:text-slate-50">
+          {page.currentPage} / {page.lastPage}
+        </p>
+        {
+          page.url.next && (
+            <a
+              href={page.url.next}
+              class="w-fit text-sm font-semibold px-5 py-2 rounded-lg bg-zinc-800 text-slate-50  dark:border dark:border-zinc-700"
+            >
+              Next
+            </a>
+          )
+        }
+      </div>
+    </nav>
+  </main>
+</Layout>
