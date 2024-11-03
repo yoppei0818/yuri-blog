@@ -38,7 +38,7 @@ const HamburgerMenu: React.FC<Props> = ({ activeMenu }) => {
         )}
       </button>
       {toggle && (
-        <ul className="absolute top-20 flex flex-col w-4/5 mx-auto border rounded-lg bg-stone-50 dark:bg-gray-800">
+        <ul className="absolute top-20 flex flex-col w-4/5 mx-auto border rounded-lg bg-stone-50 dark:bg-zinc-900 dark:border-zinc-700">
           {navItems.map(navItem => (
             <HeaderItem
               key={navItem.navTitle}
