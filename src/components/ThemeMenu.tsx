@@ -34,7 +34,7 @@ const ThemeMenu = () => {
 
   return (
     <button
-      className="ml-5 py-2 px-2 border rounded-lg w-max"
+      className="ml-5 py-2 px-2 border rounded-lg w-max dark:border-zinc-700"
       onClick={changeTheme}
     >
       {theme === "dark" ? (
