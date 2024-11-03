@@ -1,19 +1,28 @@
-// ナビゲーション項目
+// ナビゲーション項目を管理
 export const navItems = [
   {
     navTitle: "Home",
-    navLink: "#",
+    navLink: "/",
   },
   {
     navTitle: "About",
-    navLink: "#",
+    navLink: "about",
   },
   {
     navTitle: "Blog",
-    navLink: "#",
+    navLink: "blog",
   },
   {
     navTitle: "Work",
-    navLink: "#",
+    navLink: "work",
   },
+];
+//　　記事一覧にて取得する項目を管理
+export const blogListItems = [
+  "id",
+  "eyecatch",
+  "eyecatch_alt",
+  "title",
+  "tags",
+  "publishedAt",
 ];

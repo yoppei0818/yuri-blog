@@ -1,6 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import EyecatchCard from "../components/EyecatchCard.astro";
 
+//microCMS呼び出し
+import { getBlogs } from "../lib/microcms";
+import { blogListItems } from "../utils";
+const response = await getBlogs({
+  limit: 3,
+  fields: blogListItems,
+});
+
+// 画像関連呼び出し
 import { Image } from "astro:assets";
 import profileImage from "../images/profileImage.png";
 import githubLogoImage from "../images/githubLogoImage.svg";
@@ -26,7 +36,7 @@ import githubLogoImage from "../images/githubLogoImage.svg";
         <div class="mt-2">
           <a
             href="https://github.com/yoppei0818"
-            class="w-fit inline-flex items-center text-sm font-semibold px-5 py-2 rounded-lg bg-gray-800 text-slate-50 dark:border"
+            class="w-fit inline-flex items-center text-sm font-semibold px-5 py-2 rounded-lg bg-zinc-800 text-slate-50 dark:border dark:border-zinc-700"
             ><Image
               class="mr-1"
               src={githubLogoImage}
@@ -44,72 +54,30 @@ import githubLogoImage from "../images/githubLogoImage.svg";
         最新の記事
       </h2>
       <div class="mt-5 grid grid-flow-row gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        <article
-          class="border w-auto rounded-lg hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md duration-200 ease-in-out"
-        >
-          <a href="#"
-            ><Image
-              class="py-4 mx-auto"
-              src={githubLogoImage}
-              alt="Githubアカウント画像"
-              width="100"
-              height="100"
-            />
-            <div class="border-t px-5 py-2">
-              <h3 class="text-base font-bold dark:text-slate-50">
-                JavaScriptのランタイム構成からイベントループを学ぶ
-              </h3>
-              <p class="mt-3 text-sm dark:text-slate-50">投稿日：2024/10/31</p>
-            </div>
-          </a>
-        </article>
-        <article
-          class="border w-auto rounded-lg hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md duration-200 ease-in-out"
-        >
-          <a href="#"
-            ><Image
-              class="py-4 mx-auto"
-              src={githubLogoImage}
-              alt="Githubアカウント画像"
-              width="100"
-              height="100"
-            />
-            <div class="border-t px-5 py-2">
-              <h3 class="text-base font-bold dark:text-slate-50">
-                JavaScriptのランタイム構成からイベントループを学ぶ
-              </h3>
-              <p class="mt-3 text-sm dark:text-slate-50">投稿日：2024/10/31</p>
-            </div>
-          </a>
-        </article>
-        <article
-          class="border w-auto rounded-lg hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-md duration-200 ease-in-out"
-        >
-          <a href="#"
-            ><Image
-              class="py-4 mx-auto"
-              src={githubLogoImage}
-              alt="Githubアカウント画像"
-              width="100"
-              height="100"
-            />
-            <div class="border-t px-5 py-2">
-              <h3 class="text-base font-bold dark:text-slate-50">
-                JavaScriptのランタイム構成からイベントループを学ぶ
-              </h3>
-              <p class="mt-3 text-sm dark:text-slate-50">投稿日：2024/10/31</p>
-            </div>
-          </a>
-        </article>
+        {
+          response.contents.length > 0 ? (
+            response.contents.map((content: any) => (
+              <EyecatchCard {...content} />
+            ))
+          ) : (
+            <h3>
+              表示できる記事がありませんでした &#x1F647;&#x200D;&#x2642;&#xFE0F;
+            </h3>
+          )
+        }
       </div>
-      <div class="mt-5 flex justify-center">
-        <a
-          href="#"
-          class="w-fit text-sm font-semibold px-5 py-2 rounded-lg bg-gray-800 text-slate-50 dark:border"
-        >
-          すべての記事はこちらから
-        </a>
-      </div>
+      {
+        response.contents.length > 0 && (
+          <div class="mt-5 flex justify-center">
+            <a
+              href="/blog"
+              class="w-fit text-sm font-semibold px-5 py-2 rounded-lg bg-zinc-800 text-slate-50  dark:border dark:border-zinc-700"
+            >
+              すべての記事はこちらから
+            </a>
+          </div>
+        )
+      }
     </section>
   </main>
 </Layout>
