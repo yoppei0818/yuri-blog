@@ -2,6 +2,11 @@
 import Layout from "../../../layouts/Layout.astro";
 import EyecatchCard from "../../../components/EyecatchCard.astro";
 
+// 画像関連呼び出し
+import Image from "astro/components/Image.astro";
+import backBtnImage from "../../../images/backBtnImage.svg";
+import nextBtnImage from "../../../images/nextBtnImage.svg";
+
 //動的ルーティング生成
 import type { GetStaticPathsOptions } from "astro";
 import { getBlogs } from "../../../lib/microcms";
@@ -37,25 +42,48 @@ const { page } = Astro.props;
     <nav class="mt-10">
       <div class="flex items-center justify-center">
         {
+          //　Backボタン
           page.url.prev && (
             <a
               href={page.url.prev}
-              class="w-fit text-sm font-semibold px-5 py-2 rounded-lg bg-zinc-800 text-slate-50  dark:border dark:border-zinc-700"
+              class="w-12 h-12 flex items-center justify-center border rounded-l-lg bg-stone-50 dark:bg-zinc-900 dark:border dark:border-zinc-700"
             >
-              Back
+              <Image
+                class="dark:invert"
+                src={backBtnImage}
+                alt="前へボタン"
+                width="16"
+                height="16"
+              />
             </a>
           )
         }
-        <p class="mx-8 w-fit text-base font-semibold dark:text-slate-50">
-          {page.currentPage} / {page.lastPage}
-        </p>
         {
+          //　ページ数表示
+          page.lastPage &&
+            Array.from({ length: page.lastPage }, (v, i) => i + 1).map(i => (
+              <a
+                href={`/blog/page/${i}`}
+                class={`w-12 h-12 flex items-center justify-center font-semibold border ${page.currentPage === i ? "bg-gray-200 dark:bg-zinc-600" : "bg-stone-50 dark:bg-zinc-900"} dark:text-slate-50 dark:border dark:border-zinc-700`}
+              >
+                {i}
+              </a>
+            ))
+        }
+        {
+          // Nextボタン
           page.url.next && (
             <a
               href={page.url.next}
-              class="w-fit text-sm font-semibold px-5 py-2 rounded-lg bg-zinc-800 text-slate-50  dark:border dark:border-zinc-700"
+              class="w-12 h-12 flex items-center justify-center border rounded-r-lg bg-stone-50 dark:bg-zinc-900 dark:border dark:border-zinc-700"
             >
-              Next
+              <Image
+                class="dark:invert"
+                src={nextBtnImage}
+                alt="次へボタン"
+                width="16"
+                height="16"
+              />
             </a>
           )
         }
