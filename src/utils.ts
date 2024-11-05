@@ -6,15 +6,15 @@ export const navItems = [
   },
   {
     navTitle: "About",
-    navLink: "about",
+    navLink: "/about",
   },
   {
     navTitle: "Blog",
-    navLink: "blog",
+    navLink: "/blog/page/1",
   },
   {
     navTitle: "Work",
-    navLink: "work",
+    navLink: "/work",
   },
 ];
 //　　記事一覧にて取得する項目を管理
