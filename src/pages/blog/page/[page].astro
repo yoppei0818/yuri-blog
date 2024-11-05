@@ -46,7 +46,7 @@ const { page } = Astro.props;
           page.url.prev && (
             <a
               href={page.url.prev}
-              class="w-12 h-12 flex items-center justify-center border rounded-l-lg bg-stone-50 dark:bg-zinc-900 dark:border dark:border-zinc-700"
+              class="w-[calc(3rem+1px)] h-12 mr-[-1px] flex items-center justify-center border rounded-l-lg bg-stone-50 dark:bg-zinc-900 dark:border dark:border-zinc-700"
             >
               <Image
                 class="dark:invert"
@@ -64,7 +64,7 @@ const { page } = Astro.props;
             Array.from({ length: page.lastPage }, (v, i) => i + 1).map(i => (
               <a
                 href={`/blog/page/${i}`}
-                class={`w-12 h-12 flex items-center justify-center font-semibold border ${page.currentPage === i ? "bg-gray-200 dark:bg-zinc-600" : "bg-stone-50 dark:bg-zinc-900"} dark:text-slate-50 dark:border dark:border-zinc-700`}
+                class={`w-[calc(3rem+2px)] h-12 mx-[-1px] flex items-center justify-center font-semibold border ${page.currentPage === i ? "bg-gray-200 dark:bg-zinc-600" : "bg-stone-50 dark:bg-zinc-900"} dark:text-slate-50 dark:border dark:border-zinc-700`}
               >
                 {i}
               </a>
@@ -75,7 +75,7 @@ const { page } = Astro.props;
           page.url.next && (
             <a
               href={page.url.next}
-              class="w-12 h-12 flex items-center justify-center border rounded-r-lg bg-stone-50 dark:bg-zinc-900 dark:border dark:border-zinc-700"
+              class="w-[calc(3rem+1px)] h-12 ml-[-1px] flex items-center justify-center border rounded-r-lg bg-stone-50 dark:bg-zinc-900 dark:border dark:border-zinc-700"
             >
               <Image
                 class="dark:invert"
