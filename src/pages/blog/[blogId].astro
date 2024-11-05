@@ -46,7 +46,7 @@ const blog = await getBlogDetail(blogId as string);
         </p>
         <p class="text-sm text-gray-600 dark:text-slate-50 sm:text-base">
           最終更新日：{
-            new Date(blog.publishedAt).toLocaleDateString("ja-JP", {
+            new Date(blog.revisedAt).toLocaleDateString("ja-JP", {
               year: "numeric",
               month: "short",
               day: "numeric",
