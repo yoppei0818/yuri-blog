@@ -58,7 +58,7 @@ const blog = await getBlogDetail(blogId as string);
       {
         blog.tags.length > 0 &&
           blog.tags.map(tag => (
-            <span class="px-2 py-1 mr-1 text-xs font-semibold rounded-2xl border dark:text-slate-50 dark:border-zinc-700">
+            <span class="px-2 py-1 mr-1 text-xs font-semibold rounded-2xl border dark:text-slate-50 dark:border-zinc-700 sm:px-3 sm:text-sm">
               {tag.name}
             </span>
           ))
