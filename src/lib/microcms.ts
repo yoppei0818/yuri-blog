@@ -13,10 +13,22 @@ export type Blog = {
   updatedAt: string;
   publishedAt: string;
   revisedAt: string;
-  eyecatch: string;
+  eyecatch: {
+    url: string;
+    height: number;
+    width: number;
+  };
+  eyecatch_alt: string;
   title: string;
   content: string;
-  tags?: string[];
+  tags: {
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+    revisedAt: string;
+    name: string;
+  }[];
 };
 export type BlogResponse = {
   totalCount: number;
