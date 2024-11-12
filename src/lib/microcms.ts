@@ -40,9 +40,7 @@ export type Blog = BaseContent;
 export type BlogResponse = BaseResponse<Blog>;
 
 // 開発物　型
-export type Work = BaseContent & {
-  work_url: string;
-};
+export type Work = BaseContent;
 export type WorkResponse = BaseResponse<Work>;
 
 // タグ　型
