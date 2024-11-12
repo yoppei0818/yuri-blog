@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Image from "astro/components/Image.astro";
+import { generateTitle, navTitles } from "../../utils";
 
 // 記事の詳細画面へのパスを生成
 import { getBlogs, getBlogDetail } from "../../lib/microcms";
@@ -17,7 +18,7 @@ const { blogId } = Astro.params;
 const blog = await getBlogDetail(blogId as string);
 ---
 
-<Layout title=`Yuri's Blog | ${blog.title}` activeMenu="Blog">
+<Layout title={generateTitle(blog.title)} activeMenu={navTitles.blog}>
   <main class="mt-20 pt-5 w-4/5 mx-auto">
     <article>
       <Image

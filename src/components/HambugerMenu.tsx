@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // コンポーネント
 import HeaderItem from "./HeaderItem";
 // ナビゲーション項目
-import { navItems } from "../utils";
+import { navInfo } from "../utils";
 // ハンバーガーメニューアイコン
 import hamburgerMenuOpenImage from "../images/hamburgerMenuOpenImage.svg";
 import hamburgerMenuCloseImage from "../images/hamburgerMenuCloseImage.svg";
@@ -39,7 +39,7 @@ const HamburgerMenu: React.FC<Props> = ({ activeMenu }) => {
       </button>
       {toggle && (
         <ul className="absolute top-20 flex flex-col w-4/5 mx-auto border rounded-lg bg-stone-50 dark:bg-zinc-900 dark:border-zinc-700">
-          {navItems.map(navItem => (
+          {navInfo.map(navItem => (
             <HeaderItem
               key={navItem.navTitle}
               navTitle={navItem.navTitle}

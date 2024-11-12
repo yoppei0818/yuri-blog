@@ -1,28 +1,31 @@
-// ナビゲーション項目を管理
-export const navItems = [
+// タブタイトルを生成する関数
+export const generateTitle = (title?: string) => {
+  return title ? `Yuri's Blog | ${title}` : "Yuri's Blog";
+};
+
+export const navTitles = {
+  home: "Home",
+  about: "About",
+  blog: "Blog",
+  work: "Work",
+};
+
+// ナビゲーション情報を管理
+export const navInfo = [
   {
-    navTitle: "Home",
+    navTitle: navTitles.home,
     navLink: "/",
   },
   {
-    navTitle: "About",
+    navTitle: navTitles.about,
     navLink: "/about",
   },
   {
-    navTitle: "Blog",
+    navTitle: navTitles.blog,
     navLink: "/blog/page/1",
   },
   {
-    navTitle: "Work",
-    navLink: "/work",
+    navTitle: navTitles.work,
+    navLink: "/work/page/1",
   },
-];
-//　　記事一覧にて取得する項目を管理
-export const blogListItems = [
-  "id",
-  "eyecatch",
-  "eyecatch_alt",
-  "title",
-  "tags",
-  "publishedAt",
 ];
