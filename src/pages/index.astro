@@ -1,13 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import EyecatchCard from "../components/EyecatchCard.astro";
+import { generateTitle, navTitles } from "../utils";
 
 //microCMS呼び出し
 import { getBlogs } from "../lib/microcms";
-import { blogListItems } from "../utils";
 const response = await getBlogs({
   limit: 3,
-  fields: blogListItems,
 });
 
 // 画像関連呼び出し
@@ -16,7 +15,7 @@ import profileImage from "../images/profileImage.png";
 import githubLogoImage from "../images/githubLogoImage.svg";
 ---
 
-<Layout title="Yuri's Blog" activeMenu="Home">
+<Layout title={generateTitle()} activeMenu={navTitles.home}>
   <main class="mt-16 pt-5 w-4/5 mx-auto">
     <section class="flex flex-col items-center sm:flex-row sm:justify-center">
       <Image
@@ -57,7 +56,7 @@ import githubLogoImage from "../images/githubLogoImage.svg";
         {
           response.contents.length > 0 ? (
             response.contents.map((content: any) => (
-              <EyecatchCard {...content} />
+              <EyecatchCard {...content} linkPrefix="blog" />
             ))
           ) : (
             <h3>

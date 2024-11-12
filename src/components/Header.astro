@@ -4,7 +4,7 @@ import HeaderItem from "./HeaderItem";
 import HambugerMenu from "./HambugerMenu";
 import ThemeMenu from "./ThemeMenu";
 // ナビゲーション項目
-import { navItems } from "../utils";
+import { navInfo } from "../utils";
 
 type Props = {
   activeMenu: string;
@@ -26,7 +26,7 @@ const { activeMenu } = Astro.props;
     <nav class="w-auto flex items-center justify-end">
       <ul class="hidden sm:flex">
         {
-          navItems.map(navItem => (
+          navInfo.map(navItem => (
             <HeaderItem
               navTitle={navItem.navTitle}
               navLink={navItem.navLink}
