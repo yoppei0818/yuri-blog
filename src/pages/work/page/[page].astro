@@ -1,0 +1,20 @@
+---
+import { generateTitle, navTitles } from "@/utils";
+import Layout from "@layouts/Layout.astro";
+import ContentList from "@components/ContentList.astro";
+
+//動的ルーティング生成
+import type { GetStaticPathsOptions } from "astro";
+import { getWorks } from "@lib/microcms";
+
+export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
+  const response = await getWorks({});
+  return paginate(response.contents, { pageSize: 9 });
+};
+
+const { page } = Astro.props;
+---
+
+<Layout title={generateTitle("Work")} activeMenu={navTitles.work}>
+  <ContentList {...page} title="開発物" linkPrefix="work" />
+</Layout>

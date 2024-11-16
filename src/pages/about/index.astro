@@ -1,0 +1,82 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { generateTitle, navTitles } from "@/utils";
+
+// 画像関連呼び出し
+import { Image } from "astro:assets";
+import profileImage from "@images/profileImage.png";
+import githubLogoImage from "@images/githubLogoImage.svg";
+import openPageArrow from "@images/openPageArrow.svg";
+---
+
+<Layout title={generateTitle("About")} activeMenu={navTitles.about}>
+  <main class="mt-16 pt-5 w-4/5 mx-auto">
+    <section class="flex flex-col items-center">
+      <Image
+        src={profileImage}
+        alt="プロフィール画像"
+        width="200"
+        height="200"
+      />
+
+      <div class="mt-5">
+        <h1 class="mb-2 text-2xl font-extrabold dark:text-slate-50 sm:text-3xl">
+          About
+        </h1>
+        <p class="mb-2 text-sm dark:text-slate-50 sm:text-base">
+          こんにちは、<span class="font-bold">Yuri</span>です。<br
+          />現在、Salesforceエンジニアとして主にLightning Web
+          Conponentsを扱っています。<br
+          />ReactやTypeScriptを独学で学んでいます。
+        </p>
+        <p class="mb-2 text-sm dark:text-slate-50 sm:text-base">
+          Tech系の記事やゆるい雑談などを週に1回投稿する予定です。<br
+          />フロントエンド関連の記事が中心になります。
+        </p>
+        <p class="text-sm dark:text-slate-50 sm:text-base">
+          ゲーム、アニメ鑑賞、音楽鑑賞、旅行が趣味です。
+        </p>
+        <div class="mt-2">
+          <a
+            href="https://github.com/yoppei0818"
+            class="w-fit inline-flex items-center text-sm font-semibold px-5 py-2 bg-zinc-800 text-slate-50 border rounded-lg dark:border-zinc-700"
+            ><Image
+              class="mr-1"
+              src={githubLogoImage}
+              alt="Githubアカウント画像"
+              width="16"
+              height="16"
+            />@yoppei0818</a
+          >
+        </div>
+
+        <div class="mt-8 flex flex-col justify-start sm:flex-row">
+          <a
+            href="/blog/page/1"
+            class="mb-2 w-fit inline-flex text-sm font-semibold px-5 py-2 bg-zinc-800 text-slate-50 border rounded-lg dark:border-zinc-700 sm:mb-0 sm:mr-4"
+            >ブログを読む<Image
+              class="ml-2"
+              src={openPageArrow}
+              alt="ページを開く"
+              width="14"
+              height="14"
+            />
+          </a>
+          <a
+            href="/work/page/1"
+            class="w-fit inline-flex text-sm font-semibold px-5 py-2 bg-zinc-800 text-slate-50 rounded-lg border dark:border-zinc-700"
+          >
+            開発物を見る
+            <Image
+              class="ml-2"
+              src={openPageArrow}
+              alt="ページを開く"
+              width="14"
+              height="14"
+            />
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

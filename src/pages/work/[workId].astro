@@ -1,0 +1,23 @@
+---
+import { generateTitle, navTitles } from "@/utils";
+import Layout from "@layouts/Layout.astro";
+import ContentDetail from "@components/ContentDetail.astro";
+
+// 記事の詳細画面へのパスを生成
+import { getWorks, getWorkDetail } from "@lib/microcms";
+export const getStaticPaths = async () => {
+  const response = await getWorks({ fields: ["id"] });
+  return response.contents.map((content: any) => ({
+    params: {
+      workId: content.id,
+    },
+  }));
+};
+
+const { workId } = Astro.params;
+const work = await getWorkDetail(workId as string);
+---
+
+<Layout title={generateTitle(work.title)} activeMenu={navTitles.work}>
+  <ContentDetail {...work} width={450} height={250} />
+</Layout>

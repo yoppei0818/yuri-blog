@@ -1,0 +1,63 @@
+---
+import Tag from "@components/Tag.astro";
+import { Image } from "astro:assets";
+import type { Blog, Work } from "@lib/microcms";
+
+type Props = (Blog | Work) & {
+  width: number;
+  height: number;
+};
+
+const {
+  eyecatch,
+  eyecatch_alt,
+  title,
+  tags,
+  publishedAt,
+  revisedAt,
+  content,
+  width,
+  height,
+} = Astro.props;
+---
+
+<main class="mt-20 pt-5 w-4/5 mx-auto">
+  <article>
+    <Image
+      class="mx-auto"
+      src={eyecatch.url}
+      alt={eyecatch_alt}
+      width={width}
+      height={height}
+    />
+
+    <h1 class="mt-8 text-xl font-bold dark:text-slate-50 sm:text-2xl">
+      {title}
+    </h1>
+
+    <div class="my-2 flex flex-col sm:flex-row">
+      <p class="text-sm text-gray-600 dark:text-slate-50 sm:text-base sm:mr-10">
+        公開日：{
+          new Date(publishedAt).toLocaleDateString("ja-JP", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })
+        }
+      </p>
+      <p class="text-sm text-gray-600 dark:text-slate-50 sm:text-base">
+        最終更新日：{
+          new Date(revisedAt).toLocaleDateString("ja-JP", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })
+        }
+      </p>
+    </div>
+
+    {tags.length > 0 && tags.map(tag => <Tag tagName={tag.name} />)}
+
+    <div set:html={content} class="mt-14 dark:text-slate-50" />
+  </article>
+</main>
