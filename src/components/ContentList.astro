@@ -27,7 +27,7 @@ const { data, url, lastPage, currentPage, title, linkPrefix } = Astro.props;
           <EyecatchCard {...content} linkPrefix={linkPrefix} />
         ))
       ) : (
-        <h3>
+        <h3 class="dark:text-slate-50">
           表示できる内容がありませんでした &#x1F647;&#x200D;&#x2642;&#xFE0F;
         </h3>
       )
