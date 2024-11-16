@@ -1,12 +1,12 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import { generateTitle, navTitles } from "../../utils";
+import Layout from "@layouts/Layout.astro";
+import { generateTitle, navTitles } from "@/utils";
 
 // 画像関連呼び出し
 import { Image } from "astro:assets";
-import profileImage from "../../images/profileImage.png";
-import githubLogoImage from "../../images/githubLogoImage.svg";
-import openPageArrow from "../../images/openPageArrow.svg";
+import profileImage from "@images/profileImage.png";
+import githubLogoImage from "@images/githubLogoImage.svg";
+import openPageArrow from "@images/openPageArrow.svg";
 ---
 
 <Layout title={generateTitle("About")} activeMenu={navTitles.about}>

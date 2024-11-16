@@ -1,8 +1,8 @@
 ---
+import Tag from "@components/Tag.astro";
 import { Image } from "astro:assets";
-import type { Blog } from "../lib/microcms";
-import type { Work } from "../lib/microcms";
 
+import type { Blog, Work } from "@lib/microcms";
 type Props = (Blog | Work) & {
   linkPrefix: string;
 };
@@ -39,14 +39,7 @@ const { id, eyecatch, eyecatch_alt, title, tags, publishedAt, linkPrefix } =
             })
           }
         </p>
-        {
-          tags.length > 0 &&
-            tags.map(tag => (
-              <span class="px-2 py-1 mr-1 text-xs font-semibold rounded-2xl border dark:text-slate-50 dark:border-zinc-700">
-                {tag.name}
-              </span>
-            ))
-        }
+        {tags.length > 0 && tags.map(tag => <Tag tagName={tag.name} />)}
       </div>
     </div>
   </a>

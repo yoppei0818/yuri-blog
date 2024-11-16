@@ -1,7 +1,7 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import EyecatchCard from "../components/EyecatchCard.astro";
-import { generateTitle, navTitles } from "../utils";
+import Layout from "@layouts/Layout.astro";
+import EyecatchCard from "@components/EyecatchCard.astro";
+import { generateTitle, navTitles } from "@/utils";
 
 //microCMS呼び出し
 import { getBlogs } from "../lib/microcms";
@@ -11,8 +11,8 @@ const response = await getBlogs({
 
 // 画像関連呼び出し
 import { Image } from "astro:assets";
-import profileImage from "../images/profileImage.png";
-import githubLogoImage from "../images/githubLogoImage.svg";
+import profileImage from "@images/profileImage.png";
+import githubLogoImage from "@images/githubLogoImage.svg";
 ---
 
 <Layout title={generateTitle()} activeMenu={navTitles.home}>

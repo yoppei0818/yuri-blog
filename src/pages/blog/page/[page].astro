@@ -1,16 +1,11 @@
 ---
-import Layout from "../../../layouts/Layout.astro";
-import EyecatchCard from "../../../components/EyecatchCard.astro";
-
-// 画像関連呼び出し
-import Image from "astro/components/Image.astro";
-import backBtnImage from "../../../images/backBtnImage.svg";
-import nextBtnImage from "../../../images/nextBtnImage.svg";
+import { generateTitle, navTitles } from "@/utils";
+import Layout from "@layouts/Layout.astro";
+import ContentList from "@components/ContentList.astro";
 
 //動的ルーティング生成
 import type { GetStaticPathsOptions } from "astro";
-import { getBlogs } from "../../../lib/microcms";
-import { generateTitle, navTitles } from "../../../utils";
+import { getBlogs } from "@lib/microcms";
 
 export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
   const response = await getBlogs();
@@ -21,73 +16,5 @@ const { page } = Astro.props;
 ---
 
 <Layout title={generateTitle("Blog")} activeMenu={navTitles.blog}>
-  <main class="mt-20 pt-5 w-4/5 mx-auto">
-    <h2 class="mb-2 text-xl font-bold dark:text-slate-50 sm:text-2xl">
-      記事一覧
-    </h2>
-    <div class="mt-5 grid grid-flow-row gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {
-        page.data.length > 0 ? (
-          page.data.map((content: any) => (
-            <EyecatchCard {...content} linkPrefix="blog" />
-          ))
-        ) : (
-          <h3>
-            表示できる記事がありませんでした &#x1F647;&#x200D;&#x2642;&#xFE0F;
-          </h3>
-        )
-      }
-    </div>
-
-    <nav class="mt-10">
-      <div class="flex items-center justify-center">
-        {
-          //　Backボタン
-          page.url.prev && (
-            <a
-              href={page.url.prev}
-              class="w-[calc(3rem+1px)] h-12 mr-[-1px] flex items-center justify-center border rounded-l-lg bg-stone-50 dark:bg-zinc-900 dark:border dark:border-zinc-700"
-            >
-              <Image
-                class="dark:invert"
-                src={backBtnImage}
-                alt="前へボタン"
-                width="16"
-                height="16"
-              />
-            </a>
-          )
-        }
-        {
-          //　ページ数表示
-          page.lastPage &&
-            Array.from({ length: page.lastPage }, (v, i) => i + 1).map(i => (
-              <a
-                href={`/blog/page/${i}`}
-                class={`w-[calc(3rem+2px)] h-12 mx-[-1px] flex items-center justify-center font-semibold border ${page.currentPage === i ? "bg-gray-200 dark:bg-zinc-600" : "bg-stone-50 dark:bg-zinc-900"} dark:text-slate-50 dark:border dark:border-zinc-700`}
-              >
-                {i}
-              </a>
-            ))
-        }
-        {
-          // Nextボタン
-          page.url.next && (
-            <a
-              href={page.url.next}
-              class="w-[calc(3rem+1px)] h-12 ml-[-1px] flex items-center justify-center border rounded-r-lg bg-stone-50 dark:bg-zinc-900 dark:border dark:border-zinc-700"
-            >
-              <Image
-                class="dark:invert"
-                src={nextBtnImage}
-                alt="次へボタン"
-                width="16"
-                height="16"
-              />
-            </a>
-          )
-        }
-      </div>
-    </nav>
-  </main>
+  <ContentList {...page} title="記事一覧" linkPrefix="blog" />
 </Layout>

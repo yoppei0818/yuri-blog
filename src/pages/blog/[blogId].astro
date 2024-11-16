@@ -1,10 +1,10 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import Image from "astro/components/Image.astro";
-import { generateTitle, navTitles } from "../../utils";
+import { generateTitle, navTitles } from "@/utils";
+import Layout from "@layouts/Layout.astro";
+import ContentDetail from "@components/ContentDetail.astro";
 
 // 記事の詳細画面へのパスを生成
-import { getBlogs, getBlogDetail } from "../../lib/microcms";
+import { getBlogs, getBlogDetail } from "@lib/microcms";
 export const getStaticPaths = async () => {
   const response = await getBlogs({ fields: ["id"] });
   return response.contents.map((content: any) => ({
@@ -19,53 +19,5 @@ const blog = await getBlogDetail(blogId as string);
 ---
 
 <Layout title={generateTitle(blog.title)} activeMenu={navTitles.blog}>
-  <main class="mt-20 pt-5 w-4/5 mx-auto">
-    <article>
-      <Image
-        class="mx-auto"
-        src={blog.eyecatch.url}
-        alt={blog.eyecatch_alt}
-        width="250"
-        height="250"
-      />
-
-      <h1 class="mt-8 text-2xl font-bold dark:text-slate-50 sm:text-3xl">
-        {blog.title}
-      </h1>
-
-      <div class="my-2 flex flex-col sm:flex-row">
-        <p
-          class="text-sm text-gray-600 dark:text-slate-50 sm:text-base sm:mr-10"
-        >
-          公開日：{
-            new Date(blog.publishedAt).toLocaleDateString("ja-JP", {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            })
-          }
-        </p>
-        <p class="text-sm text-gray-600 dark:text-slate-50 sm:text-base">
-          最終更新日：{
-            new Date(blog.revisedAt).toLocaleDateString("ja-JP", {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            })
-          }
-        </p>
-      </div>
-
-      {
-        blog.tags.length > 0 &&
-          blog.tags.map(tag => (
-            <span class="px-2 py-1 mr-1 text-xs font-semibold rounded-2xl border dark:text-slate-50 dark:border-zinc-700 sm:px-3 sm:text-sm">
-              {tag.name}
-            </span>
-          ))
-      }
-
-      <div set:html={blog.content} class="mt-14 dark:text-slate-50" />
-    </article>
-  </main>
+  <ContentDetail {...blog} width={250} height={250} />
 </Layout>
