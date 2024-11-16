@@ -1,10 +1,10 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import Layout from "@layouts/Layout.astro";
 import Image from "astro/components/Image.astro";
-import { generateTitle, navTitles } from "../../utils";
+import { generateTitle, navTitles } from "@/utils";
 
 // 記事の詳細画面へのパスを生成
-import { getWorks, getWorkDetail } from "../../lib/microcms";
+import { getWorks, getWorkDetail } from "@lib/microcms";
 export const getStaticPaths = async () => {
   const response = await getWorks({ fields: ["id"] });
   return response.contents.map((content: any) => ({

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 // コンポーネント
-import HeaderItem from "./HeaderItem";
+import HeaderItem from "@components/HeaderItem";
 // ナビゲーション項目
-import { navInfo } from "../utils";
+import { navInfo } from "@/utils";
 // ハンバーガーメニューアイコン
-import hamburgerMenuOpenImage from "../images/hamburgerMenuOpenImage.svg";
-import hamburgerMenuCloseImage from "../images/hamburgerMenuCloseImage.svg";
+import hamburgerMenuOpenImage from "@images/hamburgerMenuOpenImage.svg";
+import hamburgerMenuCloseImage from "@images/hamburgerMenuCloseImage.svg";
 
 type Props = {
   activeMenu: string;

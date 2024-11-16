@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import darkModeImage from "../images/darkModeImage.svg";
-import lightModeImage from "../images/lightModeImage.svg";
+import darkModeImage from "@/images/darkModeImage.svg";
+import lightModeImage from "@/images/lightModeImage.svg";
 
 const ThemeMenu = () => {
   const [theme, setTheme] = useState<"light" | "dark" | undefined>(undefined);
