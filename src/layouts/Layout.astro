@@ -1,5 +1,6 @@
 ---
 import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
 
 type Props = {
   title: string;
@@ -29,9 +30,14 @@ const { title, activeMenu } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="antialiased bg-stone-50 dark:bg-zinc-900">
+  <body class="min-h-full antialiased bg-stone-50 dark:bg-zinc-900">
     <Header activeMenu={activeMenu} />
-    <slot />
+    <main
+      class="mt-20 pt-5 w-4/5 min-h-[calc(100vh-4rem-1.25rem-4.5rem)] mx-auto"
+    >
+      <slot />
+    </main>
+    <Footer />
 
     <script is:inline>
       const localTheme = localStorage.getItem("theme");
