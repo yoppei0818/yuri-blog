@@ -16,67 +16,60 @@ import githubLogoImage from "@images/githubLogoImage.svg";
 ---
 
 <Layout title={generateTitle()} activeMenu={navTitles.home}>
-  <main class="mt-16 pt-5 w-4/5 mx-auto">
-    <section class="flex flex-col items-center sm:flex-row sm:justify-center">
-      <Image
-        src={profileImage}
-        alt="プロフィール画像"
-        width="200"
-        height="200"
-      />
-      <div class="mt-5">
-        <h1 class="mb-2 text-2xl font-extrabold dark:text-slate-50 sm:text-3xl">
-          Hello, I'm Yuri.
-        </h1>
-        <p class="text-sm dark:text-slate-50 sm:text-base">
-          Tech系の記事やゆるい雑談などを週に1回投稿する予定です。<br
-          />フロントエンド関連の記事が中心になります。
-        </p>
-        <div class="mt-2">
-          <a
-            href="https://github.com/yoppei0818"
-            class="w-fit inline-flex items-center text-sm font-semibold px-5 py-2 bg-zinc-800 text-slate-50 border rounded-lg dark:border-zinc-700"
-            ><Image
-              class="mr-1"
-              src={githubLogoImage}
-              alt="Githubアカウント画像"
-              width="16"
-              height="16"
-            />@yoppei0818</a
-          >
-        </div>
+  <section class="flex flex-col items-center sm:flex-row sm:justify-center">
+    <Image src={profileImage} alt="プロフィール画像" width="200" height="200" />
+    <div class="mt-5">
+      <h1 class="mb-2 text-2xl font-extrabold dark:text-slate-50 sm:text-3xl">
+        Hello, I'm Yuri.
+      </h1>
+      <p class="text-sm dark:text-slate-50 sm:text-base">
+        Tech系の記事やゆるい雑談などを週に1回投稿する予定です。<br
+        />フロントエンド関連の記事が中心になります。
+      </p>
+      <div class="mt-2">
+        <a
+          href="https://github.com/yoppei0818"
+          class="w-fit inline-flex items-center text-sm font-semibold px-5 py-2 bg-zinc-800 text-slate-50 border rounded-lg dark:border-zinc-700"
+          ><Image
+            class="mr-1"
+            src={githubLogoImage}
+            alt="Githubアカウント画像"
+            width="16"
+            height="16"
+          />@yoppei0818</a
+        >
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="mt-10">
-      <h2 class="mb-2 text-xl font-bold dark:text-slate-50 sm:text-2xl">
-        最新の記事
-      </h2>
-      <div class="mt-5 grid grid-flow-row gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {
-          response.contents.length > 0 ? (
-            response.contents.map((content: any) => (
-              <EyecatchCard {...content} linkPrefix="blog" />
-            ))
-          ) : (
-            <h3 class="dark:text-slate-50">
-              表示できる記事がありませんでした &#x1F647;&#x200D;&#x2642;&#xFE0F;
-            </h3>
-          )
-        }
-      </div>
+  <section class="mt-10">
+    <h2 class="mb-2 text-xl font-bold dark:text-slate-50 sm:text-2xl">
+      最新の記事
+    </h2>
+    <div class="mt-5 grid grid-flow-row gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {
-        response.contents.length > 0 && (
-          <div class="mt-5 flex justify-center">
-            <a
-              href="/blog/page/1"
-              class="w-fit text-sm font-semibold px-5 py-2 bg-zinc-800 text-slate-50  border rounded-lg dark:border-zinc-700"
-            >
-              すべての記事はこちらから
-            </a>
-          </div>
+        response.contents.length > 0 ? (
+          response.contents.map((content: any) => (
+            <EyecatchCard {...content} linkPrefix="blog" />
+          ))
+        ) : (
+          <h3 class="dark:text-slate-50">
+            表示できる記事がありませんでした &#x1F647;&#x200D;&#x2642;&#xFE0F;
+          </h3>
         )
       }
-    </section>
-  </main>
+    </div>
+    {
+      response.contents.length > 0 && (
+        <div class="mt-5 flex justify-center">
+          <a
+            href="/blog/page/1"
+            class="w-fit text-sm font-semibold px-5 py-2 bg-zinc-800 text-slate-50  border rounded-lg dark:border-zinc-700"
+          >
+            すべての記事はこちらから
+          </a>
+        </div>
+      )
+    }
+  </section>
 </Layout>
