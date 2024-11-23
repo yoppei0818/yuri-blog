@@ -30,32 +30,102 @@ const {
     height={height}
   />
 
-  <h1 class="mt-8 text-xl font-bold dark:text-slate-50 sm:text-2xl">
-    {title}
-  </h1>
+  <div class="max-w-4xl mx-auto">
+    <h1 class="mt-8 text-xl font-bold dark:text-slate-50 sm:text-2xl">
+      {title}
+    </h1>
 
-  <div class="my-2 flex flex-col sm:flex-row">
-    <p class="text-sm text-gray-600 dark:text-slate-50 sm:text-base sm:mr-10">
-      公開日：{
-        new Date(publishedAt).toLocaleDateString("ja-JP", {
-          year: "numeric",
-          month: "short",
-          day: "numeric",
-        })
-      }
-    </p>
-    <p class="text-sm text-gray-600 dark:text-slate-50 sm:text-base">
-      最終更新日：{
-        new Date(revisedAt).toLocaleDateString("ja-JP", {
-          year: "numeric",
-          month: "short",
-          day: "numeric",
-        })
-      }
-    </p>
+    <div class="my-2 flex flex-col sm:flex-row">
+      <p class="text-sm text-gray-600 dark:text-slate-50 sm:text-base sm:mr-10">
+        公開日：{
+          new Date(publishedAt).toLocaleDateString("ja-JP", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })
+        }
+      </p>
+      <p class="text-sm text-gray-600 dark:text-slate-50 sm:text-base">
+        最終更新日：{
+          new Date(revisedAt).toLocaleDateString("ja-JP", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })
+        }
+      </p>
+    </div>
+
+    {tags.length > 0 && tags.map(tag => <Tag tagName={tag.name} />)}
+
+    <div
+      set:html={content}
+      class="prose content max-w-full mt-14 dark:text-slate-50"
+    />
   </div>
 
-  {tags.length > 0 && tags.map(tag => <Tag tagName={tag.name} />)}
+  <style is:global>
+    .content .cms-link {
+      display: inline-block;
+      text-decoration: underline;
+      color: #02a8c6;
+    }
+    .content .cms-link::after {
+      content: "";
+      display: inline-block;
+      background-image: url("../images/newWindowOpenImage.svg");
+      width: 12px;
+      height: 12px;
+      margin: 0 3px 3px;
+    }
 
-  <div set:html={content} class="mt-14 dark:text-slate-50" />
+    .content .cms-highlight {
+      font-weight: bold;
+      background: linear-gradient(
+        to bottom,
+        transparent 60%,
+        #c3eefc 60% 90%,
+        transparent 100%
+      );
+    }
+    .dark .content .cms-highlight {
+      background: linear-gradient(
+        to bottom,
+        transparent 60%,
+        #007096 60% 90%,
+        transparent 100%
+      );
+    }
+
+    .content .cms-message {
+      display: block;
+      border-radius: 0.5rem;
+      background-color: #e8f3d6;
+      padding: 20px;
+    }
+    .content .cms-message::before {
+      content: "";
+      display: inline-block;
+      background-image: url("../images/infoImage.svg");
+      width: 16px;
+      height: 16px;
+      margin-right: 10px;
+    }
+    .dark .content .cms-message {
+      background-color: #050505;
+    }
+
+    .dark .content h3,
+    .dark .content strong,
+    .dark .content blockquote {
+      color: #fff;
+    }
+    .content img {
+      box-shadow: 0 0 3px gray;
+      margin-top: 2rem;
+    }
+    .content hr {
+      margin-bottom: 1rem;
+    }
+  </style>
 </article>
