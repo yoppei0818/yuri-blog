@@ -5,7 +5,7 @@
 
 #### 使用技術
 
-- Astro　v4.16.4
+- Astro　v4.16.17
 - TypeScript　v5.5.4
 - React　v18.3.1
 - Tailwind CSS　v3.4.13
