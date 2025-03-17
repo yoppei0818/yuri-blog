@@ -8,7 +8,9 @@ import type { GetStaticPathsOptions } from "astro";
 import { getBlogs } from "@lib/microcms";
 
 export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
-  const response = await getBlogs();
+  const response = await getBlogs({
+  limit: 100,
+});
   return paginate(response.contents, { pageSize: 9 });
 };
 
