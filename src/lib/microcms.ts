@@ -1,6 +1,9 @@
 import type { MicroCMSQueries } from "microcms-js-sdk";
 import { createClient } from "microcms-js-sdk";
 
+// microCMSの呼び出しアイテム上限数
+export const GET_ITEM_LIMIT: number = 100;
+
 // microCMSへの呼び出しクライアント設定
 const client = createClient({
   serviceDomain: import.meta.env.MICROCMS_SERVICE_DOMAIN,

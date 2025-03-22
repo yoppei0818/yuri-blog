@@ -5,12 +5,12 @@ import ContentList from "@components/ContentList.astro";
 
 //動的ルーティング生成
 import type { GetStaticPathsOptions } from "astro";
-import { getBlogs } from "@lib/microcms";
+import { GET_ITEM_LIMIT, getBlogs } from "@lib/microcms";
 
 export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
   const response = await getBlogs({
-  limit: 100,
-});
+    limit: GET_ITEM_LIMIT,
+  });
   return paginate(response.contents, { pageSize: 9 });
 };
 
