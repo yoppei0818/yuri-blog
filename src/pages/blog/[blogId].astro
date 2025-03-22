@@ -4,9 +4,12 @@ import Layout from "@layouts/Layout.astro";
 import ContentDetail from "@components/ContentDetail.astro";
 
 // 記事の詳細画面へのパスを生成
-import { getBlogs, getBlogDetail } from "@lib/microcms";
+import { GET_ITEM_LIMIT, getBlogs, getBlogDetail } from "@lib/microcms";
 export const getStaticPaths = async () => {
-  const response = await getBlogs({ fields: ["id"] });
+  const response = await getBlogs({
+    fields: ["id"],
+    limit: GET_ITEM_LIMIT,
+  });
   return response.contents.map((content: any) => ({
     params: {
       blogId: content.id,
